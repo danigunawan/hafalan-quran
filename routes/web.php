@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+
+Route::group(['prefix'=>'quran', 'middleware'=>['auth']], function () {
+Route::resource('hafalan', 'HafalanController');
 });
